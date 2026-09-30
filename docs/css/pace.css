@@ -16,6 +16,8 @@
 .pace-canvas { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; align-items: stretch; padding: 14px; }
 .pace-frame { display: flex; flex-direction: column; gap: 6px; }
 .pace-frame img { width: 150px; height: 150px; border-radius: 12px; object-fit: cover; background: #e9e9e9; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06); image-rendering: auto; }
+.pace-frame-pic { position: relative; width: 150px; height: 150px; flex: none; }
+.pace-frame-pic img { position: absolute; left: 0; top: 0; }
 .pace-frame-label { font-size: 10.5px; line-height: 1.3; letter-spacing: 0.04em; color: #6a6a6a; }
 .pace-track-wrap { display: flex; flex-direction: column; min-width: 0; }
 .pace-track-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px; }
@@ -72,6 +74,7 @@
 @media (max-width: 560px) {
   .pace-canvas { grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding: 12px; }
   .pace-frame img { width: 96px; height: 96px; }
+  .pace-frame-pic { width: 96px; height: 96px; }
   .pace-phase-label { font-size: 9px; letter-spacing: 0.04em; }
   .pace-route { flex-direction: column; align-items: flex-start; gap: 6px; }
   .pace-students { gap: 6px; }

@@ -82,7 +82,14 @@
       { step: 35, src: 'assets/figures/fig1-frame-35.png', label: 'Denoised estimate · step 35' },
       { step: 40, src: 'assets/figures/fig1-frame-40.png', label: 'Final sample · step 40' }
     ];
-    FRAMES.forEach(function (f) { var im = new Image(); im.src = f.src; });
+    /* the four frames are stacked and crossfaded, so the picture changes at every step: at step s between two
+       frames, the later one lies over the earlier one with opacity (s - a) / (b - a) */
+    var pic = el('div', 'pace-frame-pic'); frame.parentNode.insertBefore(pic, frame); pic.appendChild(frame);
+    var layers = FRAMES.map(function (f, i) {
+      if (i === 0) return frame;
+      var im = el('img'); im.src = f.src; im.alt = ''; im.setAttribute('aria-hidden', 'true'); im.width = 353; im.height = 353;
+      im.style.opacity = '0'; pic.appendChild(im); return im;
+    });
 
     /* EDM time steps (Karras et al. 2022), as used by the paper's U-Net sampler */
     var SMAX = 80, SMIN = 0.002, RHO = 7;
@@ -126,7 +133,7 @@
     }
 
     var CAPTIONS = {
-      pace: '<strong>Phase students.</strong> The sampler moves from high to low noise, and the router sends each denoising call to the student of the current phase while the others stay stored. Phases follow Figure 1 of the paper (FFHQ U-Net), and the images are its initial noise, its estimates at steps 10 and 35 and its final sample. The card shows one call per step (the Heun sampler makes 79 calls in 40 steps), and student sizes and layer shapes are illustrative.',
+      pace: '<strong>Phase students.</strong> The sampler moves from high to low noise, and the router sends each denoising call to the student of the current phase while the others stay stored. Phases follow Figure 1 of the paper (FFHQ U-Net), and the image moves through its initial noise, its estimates at steps 10 and 35 and its final sample, blending them in between. The card shows one call per step (the Heun sampler makes 79 calls in 40 steps), and student sizes and layer shapes are illustrative.',
       global: '<strong>One global student.</strong> A single network holding the whole budget runs at every call, whatever the noise level. PACE stores the same total budget as phase students and runs only one of them per call. Sizes and layer shapes are illustrative.'
     };
 
@@ -134,10 +141,12 @@
     function render() {
       var done = step >= N, ph = done ? -1 : phaseOf(step);
       cells.forEach(function (c, i) { c.classList.toggle('is-past', i < step); c.classList.toggle('is-now', i === step); });
-      var f = FRAMES[0]; FRAMES.forEach(function (x) { if (x.step <= step) f = x; });
-      if (frame.getAttribute('src') !== f.src) frame.setAttribute('src', f.src);
-      frameLabel.textContent = f.label;
-      frame.setAttribute('alt', f.label + ', from the FFHQ trajectory in Figure 1 of the paper');
+      var lo = 0; while (lo < FRAMES.length - 2 && step >= FRAMES[lo + 1].step) lo++;
+      var a = FRAMES[lo], b = FRAMES[lo + 1], t = Math.max(0, Math.min(1, (step - a.step) / (b.step - a.step)));
+      layers.forEach(function (im, i) { im.style.opacity = i < lo ? '0' : i === lo ? '1' : i === lo + 1 ? t.toFixed(3) : '0'; });
+      var label = t === 0 ? a.label : t === 1 ? b.label : 'Step ' + step + ' · interpolated';
+      frameLabel.textContent = label;
+      frame.setAttribute('alt', (t === 0 || t === 1 ? label : 'Step ' + step + ', a blend of the frames at steps ' + a.step + ' and ' + b.step) + ', from the FFHQ trajectory in Figure 1 of the paper');
       sigmaEl.textContent = 'σ = ' + fmtSigma(sigmaAt(step));
       var active = mode === 'pace' ? ph : (done ? -1 : 0);
       cards.forEach(function (c, i) {
