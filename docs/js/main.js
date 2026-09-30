@@ -525,7 +525,8 @@
       var deep = $$('.deep', act); if (!deep.length) return;
       var btn = el('button', 'more-btn'); btn.type = 'button';
       var lbl = el('span'), chev = el('i', 'chev'); btn.appendChild(lbl); btn.appendChild(chev);
-      act.appendChild(btn);
+      var closing = act.querySelector(':scope > .article-closing-cta');
+      if (closing) act.insertBefore(btn, closing); else act.appendChild(btn);
       function apply() {
         var narrow = mq.matches, open = act.classList.contains('is-open');
         deep.forEach(function (d) { if (narrow && !open) d.setAttribute('hidden', ''); else d.removeAttribute('hidden'); });

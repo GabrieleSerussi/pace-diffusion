@@ -227,6 +227,14 @@ html.is-static *, html.is-static *::before, html.is-static *::after { transition
 .pa-num { width: 18px; height: 18px; border-radius: 5px; background: var(--neutral-200); color: var(--neutral-800); display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 600; letter-spacing: 0; }
 .pace-anim-steps button[aria-selected="true"] .pa-num { background: #fff; color: var(--accent-primary); }
 .pace-anim-steps .lbl-short { display: none; }
+/* the step tabs follow the card's width: short labels once the long ones would wrap. Measured in place with
+   the play button: one line needs a card of 866px in the classic version (Inter) and 838px in the Decart
+   version, so the switch sits at an 830px content box (card width minus its 48px padding) */
+.pace-anim { container-type: inline-size; }
+@container (max-width: 829px) {
+  .pace-anim-steps .lbl-long { display: none; }
+  .pace-anim-steps .lbl-short { display: inline; }
+}
 .pace-anim-play { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--neutral-900); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
 .pace-anim-play:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 2px; }
 .pace-anim-play svg { width: 18px; height: 18px; fill: currentColor; display: none; }

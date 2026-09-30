@@ -478,7 +478,6 @@
     var clip = 'paimg' + (clipId++), cp = E('clipPath', { id: clip }, A); E('rect', { x: 0, y: 50, width: 150, height: 150, rx: 10 }, cp);
     var imgs = IMG.map(function (f) { return E('image', { href: f[0], x: 0, y: 50, width: 150, height: 150, 'clip-path': 'url(#' + clip + ')', opacity: 0 }, A); });
     E('rect', { x: 0, y: 50, width: 150, height: 150, rx: 10, 'class': 'pa-frame' }, A);
-    label(A, 0, 218, 'denoised estimate', 'pa-t pa-small');
     var TX = 174, TP = 6.6, TW = 5, TY = 112, TH = 24;
     var ticks = [];
     for (var s = 0; s < 40; s++) ticks.push(E('rect', { x: TX + s * TP, y: TY, width: TW, height: TH, rx: 1.5, fill: PH[stepPhase(s)], opacity: 0.25 }, A));

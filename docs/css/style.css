@@ -1211,3 +1211,74 @@ button { font: inherit; color: inherit; }
   .tldr { padding: 14px; }
   .tldr li { padding: 14px 16px 16px; }
 }
+
+/* ============================================================
+   Institution logos and button rows (both versions)
+   The logo row sits between the affiliations and the paper links, inside .header-actions.
+   When that column is narrow (a phone, or the text column beside the cover between 1061 and
+   about 1360px) the logos and the paper links form two rows of three equal columns, so each
+   button lines up with the logo above it; container queries follow the column, not the
+   viewport. Buttons that stack span the column. These rules come last on purpose: the tablet
+   blocks above would otherwise override the phone rules.
+   ============================================================ */
+.affil-logo-row { display: flex; flex-wrap: wrap; align-items: stretch; gap: 12px; margin: 0 0 var(--space-xl); }
+.logo-btn { display: inline-flex; align-items: center; justify-content: center; height: 66px; padding: 10px 22px; background: #ffffff; border: 1px solid var(--divider); border-radius: var(--radius-full); text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
+.logo-btn:hover, .logo-btn:focus-visible { border-color: var(--neutral-800); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+.logo-btn img { display: block; width: auto; height: 40px; max-width: 210px; object-fit: contain; }
+.logo-btn.is-wordmark img { height: 24px; }
+.header-actions { container-type: inline-size; }
+.header-actions .lbl-short { display: none; }
+@container (max-width: 639px) {
+  .affil-logo-row, .paper-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .affil-logo-row { margin-bottom: 12px; }
+  .logo-btn { height: 56px; padding: 8px; }
+  .logo-btn img { height: auto; max-height: 32px; max-width: 100%; }
+  .logo-btn.is-wordmark img { max-height: 14px; }  /* a solid wordmark reads heavier than the lab and university logos */
+  .paper-links .btn-pill { justify-content: center; padding-left: 8px; padding-right: 8px; }
+}
+@container (max-width: 459px) {
+  .header-actions .lbl-long { display: none; }
+  .header-actions .lbl-short { display: inline; }
+}
+
+/* Explorer tabs above the phone range: rows of three equal tabs instead of five and one */
+@media (min-width: 901px) {
+  .explorer-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .explorer-tabs button { justify-content: center; }
+}
+
+@media (max-width: 700px) {
+  /* the section toggle and the closing button stack: both span the column */
+  .more-btn, .article-closing-cta { width: 100%; justify-content: center; }
+}
+/* Quick links above the article (up to 1100px): the title on its own row, then one row of chips */
+@media (max-width: 1100px) {
+  .quick-links { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; }
+  .quick-links-title { width: 100%; padding: 0; font-size: 10px; letter-spacing: 0.16em; margin-bottom: 2px; }
+  .quick-links-list { display: contents; }
+  .quick-links-list a, .quick-links-share {
+    width: auto; min-height: 40px; padding: 8px 14px 8px 10px; gap: 6px; border: 1px solid var(--neutral-300); border-radius: var(--radius-full);
+    background: var(--nav-bg); font-size: 14px; line-height: 1.3; opacity: 1;
+  }
+  .quick-links-list a:hover, .quick-links-share:hover { border-color: var(--neutral-800); color: var(--text-primary); }
+  .quick-links .ql-icon { flex: 0 0 18px; width: 18px; height: 18px; }
+}
+/* Phones: the title on its own row, then two equal columns of chips */
+@media (max-width: 640px) {
+  .quick-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .quick-links-title { grid-column: 1 / -1; width: auto; margin-bottom: 2px; }
+  .quick-links-list a, .quick-links-share { width: 100%; min-width: 0; }
+}
+.quick-links-share .lbl-short { display: none; }
+@media (max-width: 400px) {
+  .quick-links-list a, .quick-links-share { padding: 8px 10px 8px 8px; }
+}
+@media (max-width: 359px) {
+  .quick-links-share .lbl-long { display: none; }
+  .quick-links-share .lbl-short { display: inline; }
+}
+/* Use it: the two actions stack at full width once they no longer fit side by side */
+@media (max-width: 560px) {
+  .build-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .build-actions .btn-pill { justify-content: center; }
+}
