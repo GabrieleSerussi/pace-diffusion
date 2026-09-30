@@ -4,7 +4,7 @@
 
 ### Discovering Diffusion Phases for Efficient Distillation (PACE)
 
-[Eitan Kosman](https://github.com/ekosman)<sup>1</sup> · [Gabriele Serussi](https://github.com/GabrieleSerussi)<sup>1,2</sup> · [Chaim Baskin](https://chaimbaskin.bgu.ac.il/)<sup>1,2</sup>
+[Eitan Kosman](https://scholar.google.com/citations?user=c83p77gAAAAJ&hl=en)<sup>1</sup> · [Gabriele Serussi](https://scholar.google.com/citations?user=GJ19YUEAAAAJ&hl=en)<sup>1,2</sup> · [Chaim Baskin](https://chaimbaskin.bgu.ac.il/)<sup>1,2</sup>
 
 <sup>1</sup> [INSIGHT Lab](https://insight.bgu.ac.il/), School of Electrical and Computer Engineering, Ben-Gurion University of the Negev · <sup>2</sup> [Decart.ai](https://research.decart.ai/)
 
