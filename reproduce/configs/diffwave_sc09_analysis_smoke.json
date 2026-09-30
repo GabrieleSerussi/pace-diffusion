@@ -1,0 +1,33 @@
+{
+  "data_root": "data/sc09_v0.02",
+  "dataset_split": "validation",
+  "max_samples": 2,
+  "subset_seed": 0,
+  "strict_protocol": true,
+  "dataset_preflight": false,
+  "teacher_preset": "sc09_diffwave_legacy_1m",
+  "model_cache_dir": "checkpoints/diffwave_sc09_1m_legacy",
+  "teacher_verification_report": "out_eval_diffwave_sc09/teacher_reproduction/reproduction_report.json",
+  "output_dir": "out_eval_diffwave_sc09/smoke",
+  "device": "cuda",
+  "dtype": "fp32",
+  "batch_size": 2,
+  "num_workers": 0,
+  "num_bins": 4,
+  "num_timestep_levels": 4,
+  "samples_per_timestep": 2,
+  "ablation_mode": "pfi",
+  "seed": 0,
+  "pfi_seed": 0,
+  "max_groups": 2,
+  "max_groups_mode": "first",
+  "group_correlation": "always",
+  "require_positive_delta_mass": true,
+  "run_postprocessing": true,
+  "num_timestep_groups": 2,
+  "score_reduction": "q90",
+  "allocation_variants": [
+    "blockwise_capacity",
+    "layerwise_capacity"
+  ]
+}

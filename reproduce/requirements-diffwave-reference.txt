@@ -1,0 +1,8 @@
+# Import-only compatibility dependencies for the pinned upstream generator.
+# PyTorch, NumPy, SciPy and tqdm are inherited from the main pace-diffusion
+# environment (python -m venv --system-site-packages; see reproduce/sc09_diffwave.sh).
+hydra-core==1.3.2
+omegaconf==2.3.0
+einops==0.8.1
+opt_einsum==3.4.0
+pytorch-lightning==2.5.2

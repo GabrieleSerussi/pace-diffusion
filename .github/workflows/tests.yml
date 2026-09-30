@@ -1,0 +1,61 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install FFmpeg (torchcodec decodes audio through it)
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+
+      - name: Install CPU PyTorch
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Install pace-diffusion
+        run: |
+          python -m pip install -e ".[dit,eval,viz,train,dev]"
+          # torchcodec is optional (no dependencies, so the CPU torch stays); the
+          # audio tests skip when it cannot load.
+          python -m pip install --no-deps torchcodec || echo "torchcodec is unavailable; its tests will skip"
+          python -c "import pace; print('pace', pace.__file__)"
+
+      - name: CPU check of the phases and budgets
+        run: python reproduce/cpu_phases_and_budgets.py --output-dir "$RUNNER_TEMP/cpu_phases_and_budgets"
+
+      - name: Tests without the external repositories
+        run: python -m pytest -p no:cacheprovider --basetemp "$RUNNER_TEMP/pytest-plain" -q -rs
+
+      - name: Clone facebookresearch/DiT and NVlabs/edm
+        run: |
+          git clone https://github.com/facebookresearch/DiT "$RUNNER_TEMP/DiT"
+          git -C "$RUNNER_TEMP/DiT" checkout ed81ce2229091fd4ecc9a223645f95cf379d582b
+          git clone https://github.com/NVlabs/edm "$RUNNER_TEMP/edm"
+          git -C "$RUNNER_TEMP/edm" checkout 008a4e5316c8e3bfe61a62f874bddba254295afb
+          echo "DIT_REPO=$RUNNER_TEMP/DiT" >> "$GITHUB_ENV"
+          echo "EDM_REPO=$RUNNER_TEMP/edm" >> "$GITHUB_ENV"
+
+      - name: Tests with facebookresearch/DiT and NVlabs/edm
+        run: python -m pytest -p no:cacheprovider --basetemp "$RUNNER_TEMP/pytest-external" -q -rs

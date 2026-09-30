@@ -1,0 +1,10 @@
+# Optional isolated environment for OpenAI's pinned guided-diffusion evaluator.
+# Upstream lists tensorflow-gpu>=2.0; that package name is obsolete and does
+# not support this repository's Python 3.12 environment.  Keep these packages
+# out of the main PyTorch environment.
+tensorflow-cpu==2.20.0
+numpy==2.2.6
+scipy==1.16.1
+requests==2.32.4
+tqdm==4.67.1
+Pillow==11.3.0

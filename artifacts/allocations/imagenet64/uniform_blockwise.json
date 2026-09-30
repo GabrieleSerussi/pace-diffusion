@@ -1,0 +1,82 @@
+{
+  "config_path": null,
+  "eval_output": {
+    "output_dir": "out_eval_edm_imagenet",
+    "results_json_path": "out_eval_edm_imagenet/results.json",
+    "timestep_grouping_path": "out_eval_edm_imagenet/grouping/timestep_grouping.json",
+    "checkpoint_paths": [
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank0.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank1.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank2.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank3.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank4.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank5.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank6.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank7.pt"
+    ],
+    "num_checkpoint_dumps": 8
+  },
+  "student_variant": "uniform_blockwise",
+  "timestep_grouping_path": "artifacts/groupings/imagenet64_adm_random_same_norm.json",
+  "timestep_blocks": [
+    [
+      0,
+      16
+    ],
+    [
+      16,
+      20
+    ]
+  ],
+  "score_sources": {},
+  "original_model_budget": {
+    "parameters": 266818179,
+    "flops": null
+  },
+  "total_student_system_budget": 266818179.0,
+  "target_budget_plan": {
+    "student_variant": "uniform_blockwise",
+    "total_student_system_budget": 266818179.0,
+    "block_budgets": [
+      133409089.5,
+      133409089.5
+    ],
+    "layer_budgets": null,
+    "num_students": 2,
+    "total_stored_budget": 266818179.0
+  },
+  "total_stored_budget_validation": {
+    "target_budgets": [
+      266818179.0
+    ],
+    "realized_budgets": [
+      266818179.0
+    ],
+    "absolute_mismatch": [
+      0.0
+    ],
+    "relative_mismatch": [
+      0.0
+    ],
+    "within_tolerance": true,
+    "budget_tolerance": 0.05,
+    "budget_name": "total_stored_parameters"
+  },
+  "rounding_rules": {
+    "channel_divisibility": 1,
+    "hidden_size_divisibility": 1,
+    "attention_head_divisibility": 1,
+    "extra": {}
+  },
+  "allocation_results_dir": "out_eval_edm_imagenet/allocation_results",
+  "allocation_results_path": "out_eval_edm_imagenet/allocation_results/uniform_blockwise.json",
+  "pace_release_copy": {
+    "format": "pace_release_copy_v1",
+    "source_path": "out_eval_edm_imagenet/allocation_results/uniform_blockwise.json",
+    "source_sha256": "0e555e92f62204d4b0c96a7e5e100521e3b918606c43ef623192571d2d8af729",
+    "changes": [
+      "absolute paths rewritten (repository-relative or $PLACEHOLDER)",
+      "timestep_grouping_path points to the released grouping"
+    ]
+  }
+}

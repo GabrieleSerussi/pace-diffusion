@@ -1,0 +1,122 @@
+{
+  "num_timesteps": 20,
+  "num_blocks": 2,
+  "total_cost": -20.970857029108714,
+  "boundaries": [
+    0,
+    16,
+    20
+  ],
+  "blocks": [
+    {
+      "start": 0,
+      "end": 16,
+      "size": 16,
+      "cost": -17.88963165698892,
+      "reduced_score": 17.88963165698892
+    },
+    {
+      "start": 16,
+      "end": 20,
+      "size": 4,
+      "cost": -3.0812253721197926,
+      "reduced_score": 3.0812253721197926
+    }
+  ],
+  "intervals": [
+    "[0, 16)",
+    "[16, 20)"
+  ],
+  "array_source": "out_eval_edm_imagenet/results.json",
+  "array_key": "relative_delta_stack",
+  "matrix_shape": [
+    96771,
+    20
+  ],
+  "plot_output": "out_eval_edm_imagenet/grouping/timestep_grouping_matrix.png",
+  "plot_matrix_source": "recomputed_similarity",
+  "plot_series_output": "out_eval_edm_imagenet/grouping/timestep_grouping_n_eff.png",
+  "plot_series_key": "n_eff",
+  "builtin_cost": "matrix_correlation_cross_penalty",
+  "cross_block_lambda": 0.02,
+  "cross_block_reward_normalization": "size",
+  "total_reduced_score": 20.970857029108714,
+  "total_score": 15.308086019723236,
+  "cost_curve_output": "out_eval_edm_imagenet/grouping/timestep_grouping_cost_curve.png",
+  "cost_curve": {
+    "num_blocks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "total_costs": [
+      -19.819698532849173,
+      -20.970857029108714,
+      -19.960473993954444,
+      -18.91951912631369,
+      -17.88963165698892,
+      -16.811821256470164,
+      -15.661740697954322,
+      -14.44569151619843,
+      -13.171227144501994,
+      -11.893573093927882,
+      -10.569114057008987,
+      -9.277026914693353,
+      -8.010470162024301,
+      -6.772932337566062,
+      -5.562402132563544,
+      -4.378899744433613,
+      -3.2314815159314367,
+      -2.116621287038856,
+      -1.0392730854634897,
+      -4.4408920985006264e-17
+    ],
+    "total_scores": [
+      14.156927523463695,
+      15.308086019723236,
+      14.297702984568966,
+      13.256748116928213,
+      12.226860647603443,
+      11.149050247084686,
+      9.998969688568843,
+      8.782920506812951,
+      7.508456135116516,
+      6.230802084542404,
+      4.906343047623508,
+      3.614255905307875,
+      2.347699152638823,
+      1.1101613281805838,
+      -0.10036887682193463,
+      -1.2838712649518653,
+      -2.4312894934540417,
+      -3.5461497223466223,
+      -4.623497923921988,
+      -5.662771009385478
+    ]
+  },
+  "pace_release_copy": {
+    "format": "pace_release_copy_v1",
+    "source_path": "out_eval_edm_imagenet/grouping/timestep_grouping.json",
+    "source_sha256": "2da9433274ca23a26b9eadef674e9bab414a16a66613e97f1ccd63d0cbc6e38c",
+    "changes": [
+      "absolute paths rewritten (repository-relative or $PLACEHOLDER)"
+    ]
+  }
+}

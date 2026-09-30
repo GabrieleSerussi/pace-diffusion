@@ -1,0 +1,81 @@
+{
+  "config_path": null,
+  "eval_output": {
+    "output_dir": "out_eval_edm_imagenet",
+    "results_json_path": "out_eval_edm_imagenet/results.json",
+    "timestep_grouping_path": "out_eval_edm_imagenet/grouping/timestep_grouping.json",
+    "checkpoint_paths": [
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank0.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank1.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank2.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank3.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank4.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank5.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank6.pt",
+      "out_eval_edm_imagenet/checkpoint_random_same_norm_rank7.pt"
+    ],
+    "num_checkpoint_dumps": 8
+  },
+  "student_variant": "global",
+  "timestep_grouping_path": "artifacts/groupings/imagenet64_adm_random_same_norm.json",
+  "timestep_blocks": [
+    [
+      0,
+      16
+    ],
+    [
+      16,
+      20
+    ]
+  ],
+  "score_sources": {},
+  "original_model_budget": {
+    "parameters": 266818179,
+    "flops": null
+  },
+  "total_student_system_budget": 266818179.0,
+  "target_budget_plan": {
+    "student_variant": "global",
+    "total_student_system_budget": 266818179.0,
+    "block_budgets": [
+      266818179.0
+    ],
+    "layer_budgets": null,
+    "num_students": 1,
+    "total_stored_budget": 266818179.0
+  },
+  "total_stored_budget_validation": {
+    "target_budgets": [
+      266818179.0
+    ],
+    "realized_budgets": [
+      266818179.0
+    ],
+    "absolute_mismatch": [
+      0.0
+    ],
+    "relative_mismatch": [
+      0.0
+    ],
+    "within_tolerance": true,
+    "budget_tolerance": 0.05,
+    "budget_name": "total_stored_parameters"
+  },
+  "rounding_rules": {
+    "channel_divisibility": 1,
+    "hidden_size_divisibility": 1,
+    "attention_head_divisibility": 1,
+    "extra": {}
+  },
+  "allocation_results_dir": "out_eval_edm_imagenet/allocation_results",
+  "allocation_results_path": "out_eval_edm_imagenet/allocation_results/global.json",
+  "pace_release_copy": {
+    "format": "pace_release_copy_v1",
+    "source_path": "out_eval_edm_imagenet/allocation_results/global.json",
+    "source_sha256": "020bca4d3d06c36b63516480f47f2f565bb39fa39f4bcb11ef3f7ec4b075f514",
+    "changes": [
+      "absolute paths rewritten (repository-relative or $PLACEHOLDER)",
+      "timestep_grouping_path points to the released grouping"
+    ]
+  }
+}

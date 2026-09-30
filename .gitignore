@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+
+# Datasets, checkpoints, reference batches, external checkouts and caches
+# (never committed; the reproduce/ scripts use these default locations)
+/data/
+/checkpoints/
+/references/
+/external/
+/shared/
+*.pt
+*.pth
+*.pkl
+*.ckpt
+*.safetensors
+
+# Outputs of the pipeline scripts (profiles, groupings, allocations, plans,
+# training runs, samples and metrics); the released inputs live in artifacts/.
+/outputs/
+/out_eval*/
+/out_distill*/
+/runs/
+**/tensorboard/
+**/fid_samples/
+wandb/

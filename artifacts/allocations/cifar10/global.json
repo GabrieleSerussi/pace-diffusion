@@ -1,0 +1,81 @@
+{
+  "config_path": null,
+  "eval_output": {
+    "output_dir": "out_eval_edm_cifar10",
+    "results_json_path": "out_eval_edm_cifar10/results.json",
+    "timestep_grouping_path": "out_eval_edm_cifar10/grouping/timestep_grouping.json",
+    "checkpoint_paths": [
+      "out_eval_edm_cifar10/checkpoint_random_same_norm_rank0.pt",
+      "out_eval_edm_cifar10/checkpoint_random_same_norm_rank1.pt",
+      "out_eval_edm_cifar10/checkpoint_random_same_norm_rank2.pt",
+      "out_eval_edm_cifar10/checkpoint_random_same_norm_rank3.pt",
+      "out_eval_edm_cifar10/checkpoint_random_same_norm_rank4.pt",
+      "out_eval_edm_cifar10/checkpoint_random_same_norm_rank5.pt",
+      "out_eval_edm_cifar10/checkpoint_random_same_norm_rank6.pt",
+      "out_eval_edm_cifar10/checkpoint_random_same_norm_rank7.pt"
+    ],
+    "num_checkpoint_dumps": 8
+  },
+  "student_variant": "global",
+  "timestep_grouping_path": "artifacts/groupings/cifar10_ddpmpp_random_same_norm.json",
+  "timestep_blocks": [
+    [
+      0,
+      8
+    ],
+    [
+      8,
+      20
+    ]
+  ],
+  "score_sources": {},
+  "original_model_budget": {
+    "parameters": 51025667,
+    "flops": null
+  },
+  "total_student_system_budget": 51025667.0,
+  "target_budget_plan": {
+    "student_variant": "global",
+    "total_student_system_budget": 51025667.0,
+    "block_budgets": [
+      51025667.0
+    ],
+    "layer_budgets": null,
+    "num_students": 1,
+    "total_stored_budget": 51025667.0
+  },
+  "total_stored_budget_validation": {
+    "target_budgets": [
+      51025667.0
+    ],
+    "realized_budgets": [
+      51025667.0
+    ],
+    "absolute_mismatch": [
+      0.0
+    ],
+    "relative_mismatch": [
+      0.0
+    ],
+    "within_tolerance": true,
+    "budget_tolerance": 0.05,
+    "budget_name": "total_stored_parameters"
+  },
+  "rounding_rules": {
+    "channel_divisibility": 1,
+    "hidden_size_divisibility": 1,
+    "attention_head_divisibility": 1,
+    "extra": {}
+  },
+  "allocation_results_dir": "out_eval_edm_cifar10/allocation_results",
+  "allocation_results_path": "out_eval_edm_cifar10/allocation_results/global.json",
+  "pace_release_copy": {
+    "format": "pace_release_copy_v1",
+    "source_path": "out_eval_edm_cifar10/allocation_results/global.json",
+    "source_sha256": "01592601f3ce40de7fd0628991dec977d58897c32b3964244803da60fdb661bd",
+    "changes": [
+      "absolute paths rewritten (repository-relative or $PLACEHOLDER)",
+      "timestep_grouping_path points to the released grouping"
+    ]
+  }
+}
