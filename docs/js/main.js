@@ -78,8 +78,8 @@
     var SHAPES = [[0.55, 0.8, 1, 0.8, 0.55], [0.75, 0.95, 1, 0.95, 0.75], [1, 0.7, 0.45, 0.7, 1]];
     var FRAMES = [
       { step: 0, src: 'assets/figures/fig1-frame-0.png', label: 'Initial noise · step 0' },
-      { step: 10, src: 'assets/figures/fig1-frame-10.png', label: 'Denoised estimate · step 10' },
-      { step: 35, src: 'assets/figures/fig1-frame-35.png', label: 'Denoised estimate · step 35' },
+      { step: 10, src: 'assets/figures/fig1-frame-10.png', label: 'Step 10' },
+      { step: 35, src: 'assets/figures/fig1-frame-35.png', label: 'Step 35' },
       { step: 40, src: 'assets/figures/fig1-frame-40.png', label: 'Final sample · step 40' }
     ];
     /* the four frames are stacked and crossfaded, so the picture changes at every step: at step s between two
@@ -133,8 +133,8 @@
     }
 
     var CAPTIONS = {
-      pace: '<strong>Phase students.</strong> The sampler moves from high to low noise, and the router sends each denoising call to the student of the current phase while the others stay stored. Phases follow Figure 1 of the paper (FFHQ U-Net), and the image moves through its initial noise, its estimates at steps 10 and 35 and its final sample, blending them in between. The card shows one call per step (the Heun sampler makes 79 calls in 40 steps), and student sizes and layer shapes are illustrative.',
-      global: '<strong>One global student.</strong> A single network holding the whole budget runs at every call, whatever the noise level. PACE stores the same total budget as phase students and runs only one of them per call. Sizes and layer shapes are illustrative.'
+      pace: '<strong>Phase students.</strong> The sampler moves from high to low noise, and the router sends each denoising call to the student of the current phase while the others stay stored. Phases follow Figure 1 of the paper (FFHQ U-Net). The image interpolates between that figure\'s frames at steps 0, 10, 35 and 40. The card shows one call per step (the Heun sampler makes 79 calls in 40 steps), and student sizes and layer shapes are illustrative.',
+      global: '<strong>One global student.</strong> A single network holding the whole budget runs at every call, whatever the noise level. PACE stores the same total budget as phase students and runs only one of them per call. Sizes and layer shapes are illustrative. The image interpolates between the FFHQ frames of Figure 1 in the paper at steps 0, 10, 35 and 40.'
     };
 
     var mode = 'pace', step = 0, timer = null, playing = false;
@@ -144,7 +144,7 @@
       var lo = 0; while (lo < FRAMES.length - 2 && step >= FRAMES[lo + 1].step) lo++;
       var a = FRAMES[lo], b = FRAMES[lo + 1], t = Math.max(0, Math.min(1, (step - a.step) / (b.step - a.step)));
       layers.forEach(function (im, i) { im.style.opacity = i < lo ? '0' : i === lo ? '1' : i === lo + 1 ? t.toFixed(3) : '0'; });
-      var label = t === 0 ? a.label : t === 1 ? b.label : 'Step ' + step + ' · interpolated';
+      var label = t === 0 ? a.label : t === 1 ? b.label : 'Step ' + step;
       frameLabel.textContent = label;
       frame.setAttribute('alt', (t === 0 || t === 1 ? label : 'Step ' + step + ', a blend of the frames at steps ' + a.step + ' and ' + b.step) + ', from the FFHQ trajectory in Figure 1 of the paper');
       sigmaEl.textContent = 'σ = ' + fmtSigma(sigmaAt(step));
