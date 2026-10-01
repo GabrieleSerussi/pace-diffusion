@@ -133,7 +133,7 @@
     }
 
     var CAPTIONS = {
-      pace: '<strong>Phase students.</strong> The sampler moves from high to low noise, and the router sends each denoising call to the student of the current phase while the others stay stored. Phases follow Figure 1 of the paper (FFHQ U-Net). The image interpolates between that figure\'s frames at steps 0, 10, 35 and 40. The card shows one call per step (the Heun sampler makes 79 calls in 40 steps), and student sizes and layer shapes are illustrative.',
+      pace: '<strong>Phase students.</strong> The sampler moves from high to low noise, and the router sends each denoising call to the student of the current phase while the others stay stored. Phases follow Figure 1 of the paper (FFHQ U-Net). The image interpolates between that figure\'s frames at steps 0, 10, 35 and 40. The card shows one call per step, and student sizes and layer shapes are illustrative.',
       global: '<strong>One global student.</strong> A single network holding the whole budget runs at every call, whatever the noise level. PACE stores the same total budget as phase students and runs only one of them per call. Sizes and layer shapes are illustrative. The image interpolates between the FFHQ frames of Figure 1 in the paper at steps 0, 10, 35 and 40.'
     };
 
